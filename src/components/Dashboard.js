@@ -13,6 +13,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
   const [filterStatus, setFilterStatus] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [eventsPerPage] = useState(5);
+  const [startDate, setStartDate] = useState('');
   
   const filteredEvents = events.filter(event => {
     const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -21,13 +22,20 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
     
     const matchesStatus = filterStatus === 'all' || event.status === filterStatus;
     
-    return matchesSearch && matchesStatus;
+    // Date filter
+    let matchesDate = true;
+    if (startDate) {
+      const eventDate = new Date(event.date);
+      matchesDate = eventDate >= new Date(startDate);
+    }
+    
+    return matchesSearch && matchesStatus && matchesDate;
   });
 
   // Reset to page 1 when filters change
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, filterStatus]);
+  }, [searchTerm, filterStatus, startDate]);
   
   const upcomingEvents = filteredEvents.filter(e => e.status === 'upcoming');
   const completedEvents = filteredEvents.filter(e => e.status === 'completed');
@@ -60,7 +68,31 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
 
       {currentView === 'dashboard' && (
         <>
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <div className="flex flex-col lg:flex-row gap-4 mb-6">
+            <div className="flex-1">
+              <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            </div>
+            <div className="flex gap-3">
+              <div className="relative">
+                <label className="block text-xs font-semibold text-gray-600 mb-1">Filter by Date</label>
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white"
+                />
+              </div>
+              {startDate && (
+                <button
+                  onClick={() => setStartDate('')}
+                  className="self-end px-4 py-3 bg-red-100 text-red-600 rounded-xl hover:bg-red-200 transition font-medium"
+                  title="Clear date filter"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
             {stats.map((stat, index) => (
@@ -102,7 +134,31 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
       {currentView === 'events' && (
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-blue-100">
           <div className="flex flex-col gap-4 mb-6">
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="flex-1">
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+              </div>
+              <div className="flex gap-3">
+                <div className="relative">
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">Filter by Date</label>
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white"
+                  />
+                </div>
+                {startDate && (
+                  <button
+                    onClick={() => setStartDate('')}
+                    className="self-end px-4 py-3 bg-red-100 text-red-600 rounded-xl hover:bg-red-200 transition font-medium"
+                    title="Clear date filter"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+            </div>
             <div className="flex gap-2 overflow-x-auto pb-2">
               <button
                 onClick={() => setFilterStatus('all')}
@@ -188,7 +244,31 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
 
       {currentView === 'calendar' && (
         <>
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <div className="flex flex-col lg:flex-row gap-4 mb-6">
+            <div className="flex-1">
+              <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            </div>
+            <div className="flex gap-3">
+              <div className="relative">
+                <label className="block text-xs font-semibold text-gray-600 mb-1">Filter by Date</label>
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition bg-white"
+                />
+              </div>
+              {startDate && (
+                <button
+                  onClick={() => setStartDate('')}
+                  className="self-end px-4 py-3 bg-red-100 text-red-600 rounded-xl hover:bg-red-200 transition font-medium"
+                  title="Clear date filter"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
           <CalendarView events={filteredEvents} />
         </>
       )}
