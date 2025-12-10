@@ -123,15 +123,15 @@ function PaymentSection({ events, onUpdateEvent }) {
   return (
     <div className="space-y-6">
       {/* Payment Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-6 border-2 border-green-200">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl md:rounded-3xl p-4 md:p-6 border-2 border-green-200">
           <div className="flex items-center gap-3 mb-3">
             <div className="bg-green-100 p-3 rounded-2xl">
               <span className="text-3xl">💵</span>
             </div>
             <div>
-              <p className="text-sm text-gray-600 font-medium">Total Revenue</p>
-              <p className="text-3xl font-bold text-green-600">${getTotalRevenue().toFixed(2)}</p>
+              <p className="text-xs md:text-sm text-gray-600 font-medium">Total Revenue</p>
+              <p className="text-2xl md:text-3xl font-bold text-green-600">${getTotalRevenue().toFixed(2)}</p>
             </div>
           </div>
         </div>
@@ -163,7 +163,7 @@ function PaymentSection({ events, onUpdateEvent }) {
 
       {/* Add Payment Form */}
       <div className="bg-white rounded-3xl shadow-sm p-8 border border-gray-200">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6">
+        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">
           {editingPayment ? 'Edit Payment' : 'Add Payment'}
         </h3>
           
@@ -264,7 +264,7 @@ function PaymentSection({ events, onUpdateEvent }) {
         </div>
 
       {/* Payment History */}
-      <div className="bg-white rounded-3xl shadow-sm p-8 border border-gray-100">
+      <div className="bg-white rounded-3xl shadow-sm p-4 md:p-8 border border-gray-100">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-2xl font-bold text-gray-900">Payment History</h3>
           <p className="text-sm text-gray-500">

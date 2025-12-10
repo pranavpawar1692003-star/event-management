@@ -40,16 +40,16 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
   ];
 
   return (
-    <div className="p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-      <div className="mb-8">
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+    <div className="p-4 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+      <div className="mb-6 md:mb-8">
+        <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
           {currentView === 'dashboard' && 'Dashboard Overview'}
           {currentView === 'events' && 'All Events'}
           {currentView === 'create' && 'Create New Event'}
           {currentView === 'payments' && 'Payments'}
           {currentView === 'calendar' && 'Calendar View'}
         </h2>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 mt-2 text-sm md:text-base">
           {currentView === 'dashboard' && 'Welcome back! Here\'s your event summary'}
           {currentView === 'events' && 'Manage all your events in one place'}
           {currentView === 'create' && 'Fill in the details to create a new event'}
@@ -62,7 +62,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
         <>
           <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
             {stats.map((stat, index) => (
               <StatsCard key={index} {...stat} />
             ))}
@@ -177,7 +177,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
       )}
 
       {currentView === 'create' && (
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto">
           <EventForm onSubmit={onAddEvent} />
         </div>
       )}

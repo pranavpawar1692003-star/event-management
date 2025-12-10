@@ -8,6 +8,7 @@ function App() {
   const [events, setEvents] = useState([]);
   const [currentView, setCurrentView] = useState('dashboard');
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -101,8 +102,6 @@ function App() {
       </div>
     );
   }
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="flex h-screen bg-gray-50">
