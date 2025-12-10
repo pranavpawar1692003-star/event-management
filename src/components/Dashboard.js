@@ -40,7 +40,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
   ];
 
   return (
-    <div className="p-4 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div className="p-4 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 h-full min-h-screen overflow-auto">
       <div className="mb-6 md:mb-8">
         <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
           {currentView === 'dashboard' && 'Dashboard Overview'}

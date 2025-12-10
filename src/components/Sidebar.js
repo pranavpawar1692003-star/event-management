@@ -10,13 +10,13 @@ function Sidebar({ currentView, setCurrentView }) {
   ];
 
   return (
-    <div className="w-72 bg-gradient-to-b from-indigo-900 via-purple-900 to-indigo-900 text-white flex flex-col shadow-2xl">
+    <div className="w-80 h-screen bg-white border-r border-gray-200 flex flex-col overflow-hidden">
       <div className="p-8 border-b border-indigo-700">
         <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Event Manager</h1>
         <p className="text-indigo-300 text-sm mt-2">Manage your events seamlessly</p>
       </div>
       
-      <nav className="flex-1 p-6 space-y-2">
+      <nav className="flex-1 p-6 space-y-2 overflow-y-auto">
         {menuItems.map(item => (
           <button
             key={item.id}

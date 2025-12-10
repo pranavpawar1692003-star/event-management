@@ -284,7 +284,7 @@ function App() {
   // Main UI
   // --------------------------------------------
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen w-screen bg-gray-50 overflow-hidden">
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
@@ -309,7 +309,7 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 h-full overflow-auto">
         {/* Mobile Header */}
         <div className="lg:hidden bg-white p-4 shadow sticky top-0 z-30 flex justify-between">
           <button
