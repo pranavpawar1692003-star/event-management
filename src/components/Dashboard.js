@@ -101,11 +101,9 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
 
       {currentView === 'events' && (
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
-            <div className="flex-1">
-              <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            </div>
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-4 mb-6">
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <div className="flex gap-2 overflow-x-auto pb-2">
               <button
                 onClick={() => setFilterStatus('all')}
                 className={`px-6 py-3 rounded-xl font-semibold transition ${
