@@ -21,12 +21,9 @@ function EventForm({ onSubmit, initialData = null, isEditing = false, onCancel =
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-200">
-      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-        {isEditing ? 'Edit Event' : 'Create New Event'}
-      </h2>
+    <form onSubmit={handleSubmit} className="space-y-6">
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-gray-700 font-semibold mb-2">Event Title *</label>
           <input
@@ -36,7 +33,7 @@ function EventForm({ onSubmit, initialData = null, isEditing = false, onCancel =
             onChange={handleChange}
             required
             placeholder="e.g., Annual Tech Conference"
-            className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+            className="w-full px-5 py-3 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm"
           />
         </div>
 
@@ -48,12 +45,12 @@ function EventForm({ onSubmit, initialData = null, isEditing = false, onCancel =
             value={formData.date}
             onChange={handleChange}
             required
-            className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+            className="w-full px-5 py-3 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm"
           />
         </div>
       </div>
 
-      <div className="mb-6">
+      <div>
         <label className="block text-gray-700 font-semibold mb-2">Location *</label>
         <input
           type="text"
@@ -62,11 +59,11 @@ function EventForm({ onSubmit, initialData = null, isEditing = false, onCancel =
           onChange={handleChange}
           required
           placeholder="e.g., San Francisco Convention Center"
-          className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+          className="w-full px-5 py-3 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm"
         />
       </div>
 
-      <div className="mb-6">
+      <div>
         <label className="block text-gray-700 font-semibold mb-2">Description *</label>
         <textarea
           name="description"
@@ -74,7 +71,7 @@ function EventForm({ onSubmit, initialData = null, isEditing = false, onCancel =
           onChange={handleChange}
           required
           placeholder="Provide details about your event..."
-          className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition resize-none"
+          className="w-full px-5 py-3 bg-white border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none shadow-sm"
           rows="4"
         />
       </div>
@@ -82,7 +79,7 @@ function EventForm({ onSubmit, initialData = null, isEditing = false, onCancel =
       <div className="flex gap-4">
         <button
           type="submit"
-          className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-200 font-bold text-lg shadow-lg shadow-blue-500/30 hover:shadow-xl"
         >
           {isEditing ? 'Update Event' : 'Create Event'}
         </button>

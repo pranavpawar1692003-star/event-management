@@ -40,9 +40,9 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
   ];
 
   return (
-    <div className="p-4 md:p-8 bg-gradient-to-br from-gray-50 to-gray-100 h-full min-h-screen overflow-auto">
+    <div className="p-4 md:p-8 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 h-full min-h-screen overflow-auto">
       <div className="mb-6 md:mb-8">
-        <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+        <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
           {currentView === 'dashboard' && 'Dashboard Overview'}
           {currentView === 'events' && 'All Events'}
           {currentView === 'create' && 'Create New Event'}
@@ -68,7 +68,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
             ))}
           </div>
 
-          <div className="bg-white rounded-3xl shadow-sm p-8 border border-gray-200">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-blue-100">
             <div className="flex justify-between items-center mb-6">
               <div>
                 <h3 className="text-2xl font-bold text-gray-900">Recent Events</h3>
@@ -84,7 +84,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
                 </svg>
               </button>
             </div>
-            <EventList events={filteredEvents.slice(0, 3)} onDelete={onDeleteEvent} onEdit={setEditingEvent} />
+            <EventList events={filteredEvents.slice(0, 3)} onDelete={onDeleteEvent} onEdit={setEditingEvent} showEdit={false} />
             {filteredEvents.length > 3 && (
               <div className="mt-6 text-center">
                 <button
@@ -100,36 +100,36 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
       )}
 
       {currentView === 'events' && (
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 border border-blue-100">
           <div className="flex flex-col gap-4 mb-6">
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             <div className="flex gap-2 overflow-x-auto pb-2">
               <button
                 onClick={() => setFilterStatus('all')}
-                className={`px-6 py-3 rounded-xl font-semibold transition ${
+                className={`px-6 py-3 rounded-2xl font-semibold transition ${
                   filterStatus === 'all'
-                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/30'
+                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-blue-300 hover:bg-blue-50'
                 }`}
               >
                 All
               </button>
               <button
                 onClick={() => setFilterStatus('upcoming')}
-                className={`px-6 py-3 rounded-xl font-semibold transition ${
+                className={`px-6 py-3 rounded-2xl font-semibold transition ${
                   filterStatus === 'upcoming'
-                    ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30'
+                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-emerald-300 hover:bg-emerald-50'
                 }`}
               >
                 Upcoming
               </button>
               <button
                 onClick={() => setFilterStatus('completed')}
-                className={`px-6 py-3 rounded-xl font-semibold transition ${
+                className={`px-6 py-3 rounded-2xl font-semibold transition ${
                   filterStatus === 'completed'
-                    ? 'bg-gradient-to-r from-gray-500 to-gray-600 text-white shadow-lg'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-gradient-to-r from-slate-600 to-slate-700 text-white shadow-lg shadow-slate-500/30'
+                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-slate-300 hover:bg-slate-50'
                 }`}
               >
                 Completed
@@ -177,7 +177,7 @@ function Dashboard({ events, onAddEvent, onUpdateEvent, onDeleteEvent, currentVi
       )}
 
       {currentView === 'create' && (
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl">
           <EventForm onSubmit={onAddEvent} />
         </div>
       )}

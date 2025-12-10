@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EventList({ events, onDelete, onEdit }) {
+function EventList({ events, onDelete, onEdit, showEdit = true }) {
   return (
     <div className="overflow-x-auto rounded-xl">
       <table className="w-full hidden md:table">
@@ -34,12 +34,14 @@ function EventList({ events, onDelete, onEdit }) {
               </td>
               <td className="px-4 lg:px-6 py-3 lg:py-4 text-sm">
                 <div className="flex gap-2">
-                  <button
-                    onClick={() => onEdit(event)}
-                    className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-3 lg:px-5 py-2 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg text-xs lg:text-sm"
-                  >
-                    Edit
-                  </button>
+                  {showEdit && (
+                    <button
+                      onClick={() => onEdit(event)}
+                      className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-3 lg:px-5 py-2 rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg text-xs lg:text-sm"
+                    >
+                      Edit
+                    </button>
+                  )}
                   <button
                     onClick={() => onDelete(event.id)}
                     className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-3 lg:px-5 py-2 rounded-lg hover:from-red-600 hover:to-pink-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg text-xs lg:text-sm"
@@ -73,15 +75,17 @@ function EventList({ events, onDelete, onEdit }) {
               <p><span className="font-semibold">Description:</span> {event.description}</p>
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={() => onEdit(event)}
-                className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
-              >
-                Edit
-              </button>
+              {showEdit && (
+                <button
+                  onClick={() => onEdit(event)}
+                  className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
+                >
+                  Edit
+                </button>
+              )}
               <button
                 onClick={() => onDelete(event.id)}
-                className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-medium"
+                className={`${showEdit ? 'flex-1' : 'w-full'} bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-medium`}
               >
                 Delete
               </button>
