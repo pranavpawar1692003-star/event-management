@@ -163,8 +163,8 @@
 // }
 
 // export default App;
-import React, { useState, useEffect } from "react";
-import Dashboard from "./components/Dashboard";
+import { useState, useEffect } from "react";
+import Dashboard from "./pages/Dashboard";
 import Sidebar from "./components/Sidebar";
 import { db } from "./firebase";
 import {
